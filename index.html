@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta> name="description" content="Interactive map of Indonesia provinces using Leaflet and GeoJSON.">
+    <meta name="keywords" content="Indonesia, provinces, map, Leaflet, Geo JSON">
+    <meta name="author" content="VincentAndriK">
     <title>Indonesia Provinces Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
@@ -23,7 +26,7 @@
         }).addTo(map);
 
         // Load GeoJSON for Indonesia provinces and log the data to console
-        fetch('./assets/geojson/indonesia-prov.json')
+        fetch('https://awr.ditjenpkh.pertanian.go.id/assets/geojson/indonesia-prov.json')
             .then(res => res.json())
             .then(data => {
                 console.log(data); // Open JSON data in browser console
