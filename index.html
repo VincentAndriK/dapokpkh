@@ -6,6 +6,8 @@
     <meta> name="description" content="Interactive map of Indonesia provinces using Leaflet and GeoJSON.">
     <meta name="keywords" content="Indonesia, provinces, map, Leaflet, Geo JSON">
     <meta name="author" content="VincentAndriK">
+    <!-- CORS headers like Access-Control-Allow-Origin cannot be set via HTML.
+    They must be configured on the server hosting the resource. -->
     <title>Indonesia Provinces Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
@@ -38,7 +40,7 @@
                         fillOpacity: 0.2
                     },
                     onEachFeature: function (feature, layer) {
-                        layer.on('hover', function () {
+                        layer.on('click', function () {
                             layer.bindPopup('<b>' + feature.properties.PROVINSI + '</b>').openPopup();
                         });
                     }
