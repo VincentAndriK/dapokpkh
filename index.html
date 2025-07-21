@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia Provinces Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([-2.5, 118], 5);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 10,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Load GeoJSON for Indonesia provinces and log the data to console
+        fetch('./assets/geojson/indonesia-prov.json')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data); // Open JSON data in browser console
+
+                L.geoJSON(data, {
+                    style: {
+                        color: "#3388ff",
+                        weight: 2,
+                        fillOpacity: 0.2
+                    },
+                    onEachFeature: function (feature, layer) {
+                        layer.on('click', function () {
+                            layer.bindPopup('<b>' + feature.properties.PROVINSI + '</b>').openPopup();
+                        });
+                    }
+                }).addTo(map);
+            });
+    </script>
+</body>
+</html>
