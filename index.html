@@ -35,7 +35,7 @@
                         fillOpacity: 0.2
                     },
                     onEachFeature: function (feature, layer) {
-                        layer.on('click', function () {
+                        layer.on('hover', function () {
                             layer.bindPopup('<b>' + feature.properties.PROVINSI + '</b>').openPopup();
                         });
                     }
